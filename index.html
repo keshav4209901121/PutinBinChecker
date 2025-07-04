@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUTIN BIN CHECKER - Advanced BIN Analysis Tool</title>
+    <meta name="description" content="PUTIN BIN CHECKER - Advanced BIN Analysis & Validation Tool. Check single or multiple BIN numbers with detailed information including brand, type, bank, and country details.">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <div class="min-h-screen bg-black relative overflow-hidden">
+            <!-- Background Pattern -->
+            <div class="absolute inset-0 opacity-5">
+                <div class="absolute inset-0 background-pattern"></div>
+            </div>
+            
+            <!-- Header -->
+            <header class="relative z-10 text-center py-8">
+                <div class="flex items-center justify-center gap-4 mb-4">
+                    <i class="fas fa-skull rotating-skull text-4xl text-yellow-400" style="display: inline-block;"></i>
+                    <h1 class="font-orbitron font-black text-4xl md:text-6xl glow-text text-yellow-400">
+                        PUTIN BIN CHECKER
+                    </h1>
+                    <i class="fas fa-skull rotating-skull text-4xl text-yellow-400" style="display: inline-block;"></i>
+                </div>
+                <p class="text-gray-400 text-lg font-inter">Advanced BIN Analysis & Validation Tool</p>
+            </header>
+
+            <!-- Telegram Banner -->
+            <div class="max-w-4xl mx-auto px-4 mb-8">
+                <div class="telegram-banner glow-border rounded-xl p-4 text-center">
+                    <div class="flex items-center justify-center gap-3">
+                        <i class="fab fa-telegram text-2xl text-yellow-400"></i>
+                        <span class="text-yellow-400 font-semibold">JOIN OUR EXCLUSIVE CHANNEL</span>
+                        <i class="fas fa-diamond text-yellow-400"></i>
+                    </div>
+                    <a href="https://t.me/SECURExBITxSOCIETY" 
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="inline-block mt-2 text-yellow-400 hover:text-yellow-300 transition-colors duration-300 font-orbitron tracking-wider">
+                        @SECURExBITxSOCIETY
+                    </a>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="max-w-6xl mx-auto px-4 pb-12">
+                <!-- Tab Navigation -->
+                <div class="flex justify-center mb-8">
+                    <div class="bg-gray-900 rounded-xl p-1 glow-border">
+                        <button 
+                            type="button"
+                            id="single-tab"
+                            class="tab-button px-6 py-3 rounded-lg font-orbitron font-semibold transition-all duration-300 cursor-pointer bg-yellow-400 text-black">
+                            <i class="fas fa-search mr-2"></i>SINGLE BIN CHECK
+                        </button>
+                        <button 
+                            type="button"
+                            id="multi-tab"
+                            class="tab-button px-6 py-3 rounded-lg font-orbitron font-semibold transition-all duration-300 cursor-pointer text-gray-400 hover:text-white hover:bg-gray-700">
+                            <i class="fas fa-list mr-2"></i>MULTI BIN CHECK
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Single BIN Check Section -->
+                <div id="single-section" class="tab-content">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <!-- Input Section -->
+                        <div class="space-y-6">
+                            <div class="bg-gray-900 p-6 rounded-xl glow-border">
+                                <h3 class="text-xl font-orbitron font-bold text-yellow-400 mb-4 flex items-center">
+                                    <i class="fas fa-credit-card mr-2"></i>
+                                    BIN INPUT
+                                </h3>
+                                
+                                <form id="single-form" class="space-y-4">
+                                    <div>
+                                        <label class="block text-sm font-semibold text-gray-300 mb-2">
+                                            <i class="fas fa-hashtag mr-1"></i>
+                                            BIN (Bank Identification Number)
+                                        </label>
+                                        <input 
+                                            type="text" 
+                                            id="single-bin"
+                                            placeholder="Enter BIN (e.g., 515462)"
+                                            maxlength="8"
+                                            class="w-full bg-black border-2 border-gray-700 rounded-lg px-4 py-3 text-white focus:border-yellow-400 focus:outline-none transition-colors duration-300 font-mono">
+                                    </div>
+                                    
+                                    <button 
+                                        type="submit"
+                                        id="single-submit"
+                                        class="w-full bg-gradient-to-r from-yellow-600 to-yellow-400 hover:from-yellow-500 hover:to-yellow-300 disabled:opacity-50 disabled:cursor-not-allowed text-black font-orbitron font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">
+                                        <i class="fas fa-search mr-2"></i>
+                                        CHECK BIN
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Results Section -->
+                        <div class="space-y-6">
+                            <div class="bg-gray-900 p-6 rounded-xl glow-border">
+                                <h3 class="text-xl font-orbitron font-bold text-yellow-400 mb-4 flex items-center">
+                                    <i class="fas fa-info-circle mr-2"></i>
+                                    BIN INFORMATION
+                                </h3>
+                                
+                                <div id="single-result" class="text-center text-gray-500 py-8">
+                                    <i class="fas fa-search text-4xl mb-4"></i>
+                                    <p>Enter a BIN number to see detailed information</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Multi BIN Check Section -->
+                <div id="multi-section" class="tab-content hidden">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <!-- Input Section -->
+                        <div class="space-y-6">
+                            <div class="bg-gray-900 p-6 rounded-xl glow-border">
+                                <h3 class="text-xl font-orbitron font-bold text-yellow-400 mb-4 flex items-center">
+                                    <i class="fas fa-list mr-2"></i>
+                                    BULK BIN INPUT
+                                </h3>
+                                
+                                <form id="multi-form" class="space-y-4">
+                                    <div>
+                                        <label class="block text-sm font-semibold text-gray-300 mb-2">
+                                            <i class="fas fa-file-alt mr-1"></i>
+                                            BIN List (Maximum 100 BINs)
+                                        </label>
+                                        <textarea
+                                            id="multi-bins"
+                                            placeholder="Enter multiple BINs (one per line)&#10;515462&#10;401234&#10;555555"
+                                            rows="8"
+                                            class="w-full bg-black border-2 border-gray-700 rounded-lg px-4 py-3 text-white focus:border-yellow-400 focus:outline-none transition-colors duration-300 font-mono resize-none"></textarea>
+                                        <div class="flex justify-between text-xs text-gray-500 mt-1">
+                                            <span>One BIN per line</span>
+                                            <span id="bin-count">0/100</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <button 
+                                        type="submit"
+                                        id="multi-submit"
+                                        class="w-full bg-gradient-to-r from-yellow-600 to-yellow-400 hover:from-yellow-500 hover:to-yellow-300 disabled:opacity-50 disabled:cursor-not-allowed text-black font-orbitron font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">
+                                        <i class="fas fa-search mr-2"></i>
+                                        CHECK ALL BINS
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Results Section -->
+                        <div class="space-y-6">
+                            <div class="bg-gray-900 p-6 rounded-xl glow-border">
+                                <h3 class="text-xl font-orbitron font-bold text-yellow-400 mb-4 flex items-center">
+                                    <i class="fas fa-chart-bar mr-2"></i>
+                                    BULK RESULTS
+                                </h3>
+                                
+                                <div id="progress-section" class="mb-4 hidden">
+                                    <div class="flex justify-between text-sm text-gray-400 mb-1">
+                                        <span>Progress</span>
+                                        <span id="progress-text">0/0</span>
+                                    </div>
+                                    <div class="w-full bg-gray-700 rounded-full h-2">
+                                        <div id="progress-bar" class="bg-gradient-to-r from-yellow-600 to-yellow-400 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div id="multi-results" class="max-h-96 overflow-y-auto space-y-2">
+                                    <div class="text-center text-gray-500 py-8">
+                                        <i class="fas fa-list text-4xl mb-4"></i>
+                                        <p>Enter BIN numbers to see bulk results</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="text-center py-8 text-gray-500">
+                <div class="flex items-center justify-center gap-2 mb-2">
+                    <i class="fas fa-skull text-yellow-400"></i>
+                    <span class="font-orbitron">PUTIN BIN CHECKER</span>
+                    <i class="fas fa-skull text-yellow-400"></i>
+                </div>
+                <p class="text-sm">Advanced BIN Analysis Tool • Use Responsibly</p>
+            </footer>
+
+            <!-- Loading Overlay -->
+            <div id="loading-overlay" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden">
+                <div class="text-center">
+                    <div class="inline-block animate-spin-slow text-6xl text-yellow-400 mb-4">
+                        <i class="fas fa-skull"></i>
+                    </div>
+                    <p class="text-yellow-400 font-orbitron font-bold text-xl">ANALYZING BIN...</p>
+                    <p class="text-gray-400 mt-2">Please wait while we process your request</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
